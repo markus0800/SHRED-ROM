@@ -7,7 +7,7 @@ class SHRED(torch.nn.Module):
 
     def __init__(self, input_size, output_size, hidden_size = 64, hidden_layers = 2, decoder_sizes = [350, 400], dropout = 0.0):
         '''
-        Inputs: input size (e.g. number of sensors + parameters), output size (e.g. full-order variable dimension), sequence length, hidden size, number of LSTM layers, sizes of fully-connected layers, dropout parameter
+        Inputs: input size (e.g. number of sensors), output size (e.g. full-order variable dimension), hidden size, number of LSTM layers, sizes of fully-connected layers, dropout parameter
         '''
             
         super(SHRED,self).__init__()
@@ -49,6 +49,14 @@ class SHRED(torch.nn.Module):
             output = layer(output)
 
         return output
+
+    def freeze(self):
+        for param in self.parameters():
+            param.requires_grad = False
+
+    def unfreeze(self):
+        for param in self.parameters():
+            param.requires_grad = True
 
 def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, optim = torch.optim.Adam, lr = 1e-3, verbose = False, patience = 5):
     '''
@@ -103,3 +111,33 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
 
     model.load_state_dict(best_params)
     return torch.tensor(valid_error_list).detach().cpu().numpy()
+
+def forecast(model, steps, test_dataset):
+    '''
+    Forecast a test time series in time
+    Inputs: forecaster model, number of forecasting steps and test time series of dimension (forecaster input size, forcaster output size)
+    '''   
+
+    input = test_dataset.clone()
+
+    forecast = torch.zeros(steps, test_dataset.shape[1])
+    for i in range(steps)):
+        forecast[i] = forecaster(input)
+        input[:-1] = input[1:]
+        input[-1] = forecast[i]
+
+    return forecast
+
+
+
+
+
+
+
+
+
+
+
+
+
+
