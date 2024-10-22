@@ -3,6 +3,10 @@ from torch.utils.data import DataLoader
 from copy import deepcopy
 from IPython.display import clear_output as clc
 
+mse = lambda datatrue, datapred: (datatrue - datapred).pow(2).sum(axis = -1).mean()
+mre = lambda datatrue, datapred: ((datatrue - datapred).pow(2).sum(axis = -1).sqrt() / (datatrue).pow(2).sum(axis = -1).sqrt()).mean()
+num2p = lambda prob : ("%.2f" % (100*prob)) + "%"
+
 class SHRED(torch.nn.Module):
 
     def __init__(self, input_size, output_size, hidden_size = 64, hidden_layers = 2, decoder_sizes = [350, 400], dropout = 0.0):
@@ -65,10 +69,7 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
     '''
 
     train_loader = DataLoader(train_dataset, shuffle = True, batch_size = batch_size)
-    criterion = torch.nn.MSELoss()
     optimizer = optim(model.parameters(), lr = lr)
-
-    num2p = lambda prob : ("%.2f" % (100*prob)) + "%"
 
     train_error_list = []
     valid_error_list = []
@@ -82,15 +83,15 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
             def closure():
                 outputs = model(data[0])
                 optimizer.zero_grad()
-                loss = criterion(outputs, data[1])
+                loss = mse(outputs, data[1])
                 loss.backward()
                 return loss
             optimizer.step(closure)
 
         model.eval()
         with torch.no_grad():
-            train_error = torch.linalg.norm(model(train_dataset.X) - train_dataset.Y) / torch.linalg.norm(train_dataset.Y)
-            valid_error = torch.linalg.norm(model(valid_dataset.X) - valid_dataset.Y) / torch.linalg.norm(valid_dataset.Y)
+            train_error = mre(train_dataset.Y, model(train_dataset.X))
+            valid_error = mre(valid_dataset.Y, model(valid_dataset.X))
             train_error_list.append(train_error)
             valid_error_list.append(valid_error)
 
