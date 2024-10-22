@@ -2,10 +2,7 @@ import torch
 from torch.utils.data import DataLoader
 from copy import deepcopy
 from IPython.display import clear_output as clc
-
-mse = lambda datatrue, datapred: (datatrue - datapred).pow(2).sum(axis = -1).mean()
-mre = lambda datatrue, datapred: ((datatrue - datapred).pow(2).sum(axis = -1).sqrt() / (datatrue).pow(2).sum(axis = -1).sqrt()).mean()
-num2p = lambda prob : ("%.2f" % (100*prob)) + "%"
+from utils.processdata import mse, mre, num2p
 
 class SHRED(torch.nn.Module):
 

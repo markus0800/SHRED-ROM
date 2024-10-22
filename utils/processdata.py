@@ -1,4 +1,12 @@
 import torch
+import matplotlib.pyplot as plt
+from IPython.display import clear_output as clc
+from IPython.display import display
+
+mse = lambda datatrue, datapred: (datatrue - datapred).pow(2).sum(axis = -1).mean()
+mre = lambda datatrue, datapred: ((datatrue - datapred).pow(2).sum(axis = -1).sqrt() / (datatrue).pow(2).sum(axis = -1).sqrt()).mean()
+num2p = lambda prob : ("%.2f" % (100*prob)) + "%"
+
 
 class TimeSeriesDataset(torch.utils.data.Dataset):
     '''
@@ -16,7 +24,8 @@ class TimeSeriesDataset(torch.utils.data.Dataset):
     
     def __len__(self):
         return self.len
-    
+
+
 def Padding(data, lag):
     '''
     Extract time-series of lenght equal to lag from longer time series in data, whose dimension is (number of time series, sequence length, data shape)
@@ -32,3 +41,51 @@ def Padding(data, lag):
                 data_out[i * data.shape[1] + j - 1] = data[i, j - lag : j]
 
     return data_out
+
+
+def multiplot(yts, plot, titles = None):
+    """
+    Multi plot of different snapshots
+    Input: list of snapshots and related plot function
+    """
+    
+    plt.figure(figsize = (100, 100))
+    for i in range(len(yts)):
+        plt.subplot(20, 20, i+1)
+        plot(yts[i])
+        plt.title(titles[i])
+
+
+def trajectory(yt, plot, title = None):
+    """
+    Trajectory gif
+    Input: trajectory with dimension (sequence length, data shape) and related plot function for a snapshot
+    """
+    
+    for i in range(yt.shape[0]):
+        plot(yt[i])
+        plt.title(title)
+        display(plt.gcf())
+        plt.close()
+        clc(wait=True)
+
+
+def trajectories(yts, plot, titles = None):
+    """
+    Gif of different trajectories
+    Input: list of trajectories with dimensions (sequence length, data shape) and plot function for a snapshot
+    """
+    
+    for i in range(yts[0].shape[0]):
+
+        vmax = max(yts[i].max() for i in range(len(yts)))
+
+        plt.figure(figsize = (100, 100))
+        for j in range(len(yts)):
+            plt.subplot(20, 20, j+1)
+            plot(yts[j][i])
+            plt.title(titles[j])
+        
+        display(plt.gcf())
+        plt.close()
+        clc(wait=True)
