@@ -121,7 +121,7 @@ def forecast(model, steps, test_dataset):
     input = test_dataset.clone()
 
     forecast = torch.zeros(steps, test_dataset.shape[1])
-    for i in range(steps)):
+    for i in range(steps):
         forecast[i] = forecaster(input)
         input[:-1] = input[1:]
         input[-1] = forecast[i]
