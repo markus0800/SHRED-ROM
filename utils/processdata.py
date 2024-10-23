@@ -54,6 +54,7 @@ def multiplot(yts, plot, titles = None):
         plt.subplot(20, 20, i+1)
         plot(yts[i])
         plt.title(titles[i])
+        plt.axis('off')
 
 
 def trajectory(yt, plot, title = None):
@@ -65,10 +66,10 @@ def trajectory(yt, plot, title = None):
     for i in range(yt.shape[0]):
         plot(yt[i])
         plt.title(title)
+        plt.axis('off')
         display(plt.gcf())
         plt.close()
         clc(wait=True)
-
 
 def trajectories(yts, plot, titles = None):
     """
@@ -78,13 +79,12 @@ def trajectories(yts, plot, titles = None):
     
     for i in range(yts[0].shape[0]):
 
-        vmax = max(yts[i].max() for i in range(len(yts)))
-
         plt.figure(figsize = (100, 100))
         for j in range(len(yts)):
             plt.subplot(20, 20, j+1)
             plot(yts[j][i])
             plt.title(titles[j])
+            plt.axis('off')
         
         display(plt.gcf())
         plt.close()
