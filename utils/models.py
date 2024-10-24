@@ -52,12 +52,16 @@ class SHRED(torch.nn.Module):
         return output
 
     def freeze(self):
-    	self.eval()
+
+        self.eval()
+        
         for param in self.parameters():
             param.requires_grad = False
 
     def unfreeze(self):
-    	self.train()
+
+        self.train()
+        
         for param in self.parameters():
             param.requires_grad = True
 
