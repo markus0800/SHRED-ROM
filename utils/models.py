@@ -114,7 +114,7 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
             return torch.tensor(valid_error_list).cpu()
 
     model.load_state_dict(best_params)
-    return torch.tensor(valid_error_list).detach().cpu().numpy()
+    return torch.tensor(train_error_list).detach().cpu().numpy(), torch.tensor(valid_error_list).detach().cpu().numpy()
 
 def forecast(model, steps, test_dataset):
     '''
