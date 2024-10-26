@@ -1,2 +1,6 @@
 *.ipynb_checkpoints
 __pycache__
+
+# KS outputs
+KS/SHRED/*
+KS/Test_results/*
