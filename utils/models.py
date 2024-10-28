@@ -120,7 +120,7 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
             # print("\t\tTrain \tValid")
             # print("Epoch "+ str(epoch) + ":\t" + num2p(train_error_list[-1]) + "\t" + num2p(valid_error_list[-1]))
             # clc(wait = True)
-            print("Epoch "+ str(epoch) + ": Training loss = " + num2p(train_error_list[-1]) + " \t \t Validation loss = " + num2p(valid_error_list[-1]))
+            print("Epoch "+ str(epoch) + ": Training loss = " + num2p(train_error_list[-1]) + " \t Validation loss = " + num2p(valid_error_list[-1]))
             clc(wait = True)
 
         if valid_error == torch.min(torch.tensor(valid_error_list)):
@@ -135,7 +135,7 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
             valid_error = mre(valid_dataset.Y, model(valid_dataset.X))
             
             if verbose == True:
-                print("Training done: Training loss = " + num2p(train_error) + " \t \t Validation loss = " + num2p(valid_error))
+                print("Training done: Training loss = " + num2p(train_error) + " \t Validation loss = " + num2p(valid_error))
          
             return torch.tensor(train_error_list).detach().cpu().numpy(), torch.tensor(valid_error_list).detach().cpu().numpy()
     
@@ -144,7 +144,7 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
     valid_error = mre(valid_dataset.Y, model(valid_dataset.X))
     
     if verbose == True:
-    	print("Training done: Training loss = " + num2p(train_error) + " \t \t Validation loss = " + num2p(valid_error))
+    	print("Training done: Training loss = " + num2p(train_error) + " \t Validation loss = " + num2p(valid_error))
     
     return torch.tensor(train_error_list).detach().cpu().numpy(), torch.tensor(valid_error_list).detach().cpu().numpy()
  
