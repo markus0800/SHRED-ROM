@@ -11,11 +11,16 @@ class SHRED(torch.nn.Module):
 
     def __init__(self, input_size, output_size, hidden_size = 64, hidden_layers = 2, decoder_sizes = [350, 400], dropout = 0.0):
         '''
-        SHRED model accepts:
-            -   input size (e.g., number of sensors), 
-            -   output size (dimension of low or high-dimensional state,
-            -   hidden_size and number of LSTM layers,
-            -   l1 and l2 represents the size of the decoder network.
+        SHRED model definition
+        
+        
+        Inputs
+        	input size (e.g. number of sensors)
+        	output size (e.g. full-order variable dimension)
+        	size of LSTM hidden layers (default to 64)
+        	number of LSTM hidden layers (default to 2)
+        	list of decoder layers sizes (default to [350, 400])
+        	dropout parameter (default to 0)
         '''
             
         super(SHRED,self).__init__()
@@ -39,11 +44,6 @@ class SHRED(torch.nn.Module):
         self.hidden_size = hidden_size
 
     def forward(self, x):
-        '''
-        Input: input data
-        Output: SHRED evaluation at the input data
-        Definition of the forward function for the SHRED network.
-        '''
         
         h_0 = torch.zeros((self.hidden_layers, x.size(0), self.hidden_size), dtype=torch.float)
         c_0 = torch.zeros((self.hidden_layers, x.size(0), self.hidden_size), dtype=torch.float)
@@ -73,13 +73,20 @@ class SHRED(torch.nn.Module):
         for param in self.parameters():
             param.requires_grad = True
 
-def fit(model, train_dataset, valid_dataset, 
-        batch_size = 64, epochs = 4000, optim = torch.optim.Adam, lr = 1e-3, verbose = False, patience = 5):
+def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, optim = torch.optim.Adam, lr = 1e-3, verbose = False, patience = 5):
     '''
-    Function for training SHRED and SDN models.
-    Accepts the model (`torch.nn.Module`), training dataset and validation dataset.
-    The loss function is `torch.nn.MSELoss()`, the default batch size is 64, the default number of epochs is 4000, the default learning rate is 1e-3.
-    Default optimizer is `torch.optim.Adam`.
+    Neural networks training
+    
+    Inputs
+    	model (`torch.nn.Module`)
+    	training dataset (`torch.Tensor`)
+    	validation dataset (`torch.Tensor`)
+    	batch size (default to 64)
+    	number of epochs (default to 4000)
+    	optimizer (default to `torch.optim.Adam`)
+    	learning rate (default to 0.001)
+    	verbose parameter (default to False) 
+    	patience parameter (default to 5)
     '''
 
     train_loader = DataLoader(train_dataset, shuffle = True, batch_size = batch_size)
@@ -113,7 +120,8 @@ def fit(model, train_dataset, valid_dataset,
             # print("\t\tTrain \tValid")
             # print("Epoch "+ str(epoch) + ":\t" + num2p(train_error_list[-1]) + "\t" + num2p(valid_error_list[-1]))
             # clc(wait = True)
-            print("Epoch "+ str(epoch) + ": Train = " + num2p(train_error_list[-1]) + " and Valid = " + num2p(valid_error_list[-1]), end="\r")
+            print("Epoch "+ str(epoch) + ": Training loss = " + num2p(train_error_list[-1]) + " \t \t Validation loss = " + num2p(valid_error_list[-1]))
+            clc(wait = True)
 
         if valid_error == torch.min(torch.tensor(valid_error_list)):
             patience_counter = 0
@@ -122,22 +130,31 @@ def fit(model, train_dataset, valid_dataset,
             patience_counter += 1
 
         if patience_counter == patience:
-            if verbose == True:
-                print("Epoch "+ str(epoch) + ": Train = " + num2p(train_error_list[-1]) + " and Valid = " + num2p(valid_error_list[-1]))
             model.load_state_dict(best_params)
+            train_error = mre(train_dataset.Y, model(train_dataset.X))
+            valid_error = mre(valid_dataset.Y, model(valid_dataset.X))
+            
+            if verbose == True:
+                print("Training done: Training loss = " + num2p(train_error) + " \t \t Validation loss = " + num2p(valid_error))
+         
+            return torch.tensor(train_error_list).detach().cpu().numpy(), torch.tensor(valid_error_list).detach().cpu().numpy()
     
-            return torch.tensor(train_error_list).detach().cpu().numpy(), torch.tensor(valid_error_list).cpu()
+    model.load_state_dict(best_params)
+    train_error = mre(train_dataset.Y, model(train_dataset.X))
+    valid_error = mre(valid_dataset.Y, model(valid_dataset.X))
     
     if verbose == True:
-        print("Epoch "+ str(epoch) + ": Train = " + num2p(train_error_list[-1]) + " and Valid = " + num2p(valid_error_list[-1]))
-            
-    model.load_state_dict(best_params)
+    	print("Training done: Training loss = " + num2p(train_error) + " \t \t Validation loss = " + num2p(valid_error))
+    
     return torch.tensor(train_error_list).detach().cpu().numpy(), torch.tensor(valid_error_list).detach().cpu().numpy()
-
+ 
 def forecast(forecaster, steps, test_dataset):
     '''
     Forecast a test time series in time
-    Inputs: forecaster model, number of forecasting steps and test time series of dimension (forecaster input size, forcaster output size)
+    Input
+    	forecaster model (`torch.nn.Module`)
+    	number of forecasting steps
+    	test time series
     '''   
 
     input = test_dataset.clone()
