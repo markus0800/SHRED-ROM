@@ -114,7 +114,7 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
             valid_error_list.append(valid_error)
 
         if verbose == True:
-            print("Epoch "+ str(epoch) + ": Training loss = " + num2p(train_error_list[-1]) + " \t Validation loss = " + num2p(valid_error_list[-1]), end = '\r')
+            print("Epoch "+ str(epoch) + ": Training loss = " + num2p(train_error_list[-1]) + " \t Validation loss = " + num2p(valid_error_list[-1]) + " "*10, end = "\r")
 
         if valid_error == torch.min(torch.tensor(valid_error_list)):
             patience_counter = 0
