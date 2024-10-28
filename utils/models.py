@@ -2,13 +2,20 @@ import torch
 from torch.utils.data import DataLoader
 from copy import deepcopy
 from IPython.display import clear_output as clc
-from utils.processdata import mse, mre, num2p
+
+# Which one is correct (xD)?
+# from utils.processdata import mse, mre, num2p
+from .processdata import mse, mre, num2p
 
 class SHRED(torch.nn.Module):
 
     def __init__(self, input_size, output_size, hidden_size = 64, hidden_layers = 2, decoder_sizes = [350, 400], dropout = 0.0):
         '''
-        Inputs: input size (e.g. number of sensors), output size (e.g. full-order variable dimension), hidden size, number of LSTM layers, sizes of fully-connected layers, dropout parameter
+        SHRED model accepts:
+            -   input size (e.g., number of sensors), 
+            -   output size (dimension of low or high-dimensional state,
+            -   hidden_size and number of LSTM layers,
+            -   l1 and l2 represents the size of the decoder network.
         '''
             
         super(SHRED,self).__init__()
@@ -35,6 +42,7 @@ class SHRED(torch.nn.Module):
         '''
         Input: input data
         Output: SHRED evaluation at the input data
+        Definition of the forward function for the SHRED network.
         '''
         
         h_0 = torch.zeros((self.hidden_layers, x.size(0), self.hidden_size), dtype=torch.float)
@@ -65,10 +73,13 @@ class SHRED(torch.nn.Module):
         for param in self.parameters():
             param.requires_grad = True
 
-def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, optim = torch.optim.Adam, lr = 1e-3, verbose = False, patience = 5):
+def fit(model, train_dataset, valid_dataset, 
+        batch_size = 64, epochs = 4000, optim = torch.optim.Adam, lr = 1e-3, verbose = False, patience = 5):
     '''
-    Neural networks training
-    Inputs: training dataset, validation dataset, batch size, number of epochs, learning rate, verbose and patience parameters
+    Function for training SHRED and SDN models.
+    Accepts the model (`torch.nn.Module`), training dataset and validation dataset.
+    The loss function is `torch.nn.MSELoss()`, the default batch size is 64, the default number of epochs is 4000, the default learning rate is 1e-3.
+    Default optimizer is `torch.optim.Adam`.
     '''
 
     train_loader = DataLoader(train_dataset, shuffle = True, batch_size = batch_size)
@@ -99,9 +110,10 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
             valid_error_list.append(valid_error)
 
         if verbose == True:
-            print("\t\tTrain \tValid")
-            print("Epoch "+ str(epoch) + ":\t" + num2p(train_error_list[-1]) + "\t" + num2p(valid_error_list[-1]))
-            clc(wait = True)
+            # print("\t\tTrain \tValid")
+            # print("Epoch "+ str(epoch) + ":\t" + num2p(train_error_list[-1]) + "\t" + num2p(valid_error_list[-1]))
+            # clc(wait = True)
+            print("Epoch "+ str(epoch) + ": Train = " + num2p(train_error_list[-1]) + " and Valid = " + num2p(valid_error_list[-1]), end="\r")
 
         if valid_error == torch.min(torch.tensor(valid_error_list)):
             patience_counter = 0
@@ -110,13 +122,19 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
             patience_counter += 1
 
         if patience_counter == patience:
+            if verbose == True:
+                print("Epoch "+ str(epoch) + ": Train = " + num2p(train_error_list[-1]) + " and Valid = " + num2p(valid_error_list[-1]))
             model.load_state_dict(best_params)
-            return torch.tensor(valid_error_list).cpu()
-
+    
+            return torch.tensor(train_error_list).detach().cpu().numpy(), torch.tensor(valid_error_list).cpu()
+    
+    if verbose == True:
+        print("Epoch "+ str(epoch) + ": Train = " + num2p(train_error_list[-1]) + " and Valid = " + num2p(valid_error_list[-1]))
+            
     model.load_state_dict(best_params)
     return torch.tensor(train_error_list).detach().cpu().numpy(), torch.tensor(valid_error_list).detach().cpu().numpy()
 
-def forecast(model, steps, test_dataset):
+def forecast(forecaster, steps, test_dataset):
     '''
     Forecast a test time series in time
     Inputs: forecaster model, number of forecasting steps and test time series of dimension (forecaster input size, forcaster output size)
