@@ -2,9 +2,6 @@ import torch
 from torch.utils.data import DataLoader
 from copy import deepcopy
 from IPython.display import clear_output as clc
-
-# Which one is correct (xD)?
-# from utils.processdata import mse, mre, num2p
 from .processdata import mse, mre, num2p
 
 class SHRED(torch.nn.Module):
@@ -117,11 +114,7 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
             valid_error_list.append(valid_error)
 
         if verbose == True:
-            # print("\t\tTrain \tValid")
-            # print("Epoch "+ str(epoch) + ":\t" + num2p(train_error_list[-1]) + "\t" + num2p(valid_error_list[-1]))
-            # clc(wait = True)
-            print("Epoch "+ str(epoch) + ": Training loss = " + num2p(train_error_list[-1]) + " \t Validation loss = " + num2p(valid_error_list[-1]))
-            clc(wait = True)
+            print("Epoch "+ str(epoch) + ": Training loss = " + num2p(train_error_list[-1]) + " \t Validation loss = " + num2p(valid_error_list[-1]), end = '\r')
 
         if valid_error == torch.min(torch.tensor(valid_error_list)):
             patience_counter = 0
