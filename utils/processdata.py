@@ -43,13 +43,13 @@ def Padding(data, lag):
     return data_out
 
 
-def multiplot(yts, plot, titles = None):
+def multiplot(yts, plot, titles = None, figsize = None):
     """
     Multi plot of different snapshots
     Input: list of snapshots and related plot function
     """
     
-    plt.figure(figsize = (100, 100))
+    plt.figure(figsize = figsize)
     for i in range(len(yts)):
         plt.subplot(20, 20, i+1)
         plot(yts[i])
@@ -57,13 +57,14 @@ def multiplot(yts, plot, titles = None):
         plt.axis('off')
 
 
-def trajectory(yt, plot, title = None):
+def trajectory(yt, plot, title = None, figsize = None):
     """
     Trajectory gif
     Input: trajectory with dimension (sequence length, data shape) and related plot function for a snapshot
     """
     
     for i in range(yt.shape[0]):
+        plt.figure(figsize = figsize)
         plot(yt[i])
         plt.title(title)
         plt.axis('off')
@@ -71,7 +72,7 @@ def trajectory(yt, plot, title = None):
         plt.close()
         clc(wait=True)
 
-def trajectories(yts, plot, titles = None):
+def trajectories(yts, plot, titles = None, figsize = None):
     """
     Gif of different trajectories
     Input: list of trajectories with dimensions (sequence length, data shape) and plot function for a snapshot
@@ -79,7 +80,7 @@ def trajectories(yts, plot, titles = None):
     
     for i in range(yts[0].shape[0]):
 
-        plt.figure(figsize = (100, 100))
+        plt.figure(figsize = figsize)
         for j in range(len(yts)):
             plt.subplot(20, 20, j+1)
             plot(yts[j][i])
