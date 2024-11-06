@@ -1,6 +1,6 @@
 # SHRED-ROM
 
-This repository contains the official source code implementation of the paper *title*
+This repository contains the official source code implementation of the paper *___title___*
 
 `utils` folder contains auxiliary functions to process and plot data, as well as to define and train the SHRED model. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams)
 
