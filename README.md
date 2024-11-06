@@ -10,7 +10,7 @@ This repository contains the official source code implementation of the paper *t
 `Pinball/Pinball.ipynb` presents the pinball test case where we reconstruct the high-dimensional density, whose dynamics is described by the Fokker-Planck equation with transport term computed via steady Navier-Stokes equations, starting from few sensor data. Different velocities of the three rotating cylinders are considered.
 
 <p align="center" width="100%">
-  <img width=100% src="./gifs/Pinball.gif" >
+  <img width=80% src="./gifs/Pinball.gif" >
   <br />
 </p>
 
