@@ -1,5 +1,8 @@
 import torch
+import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import use, get_backend
+import imageio
 from IPython.display import clear_output as clc
 from IPython.display import display
 
@@ -43,10 +46,10 @@ def Padding(data, lag):
     return data_out
 
 
-def multiplot(yts, plot, titles = None, figsize = None):
+def multiplot(yts, plot, titles = None, figsize = None, save = False, name = "multiplot"):
     """
     Multi plot of different snapshots
-    Input: list of snapshots and related plot function
+    Input: list of snapshots, related plot function, list of titles and figure size
     """
     
     plt.figure(figsize = figsize)
@@ -55,29 +58,41 @@ def multiplot(yts, plot, titles = None, figsize = None):
         plot(yts[i])
         plt.title(titles[i])
         plt.axis('off')
+    plt.savefig(name.replace(".png", "") + ".png", transparent = True, bbox_inches='tight')
 
 
-def trajectory(yt, plot, title = None, figsize = None):
+def trajectory(yt, plot, title = None, figsize = None, save = False, name = 'gif'):
     """
     Trajectory gif
-    Input: trajectory with dimension (sequence length, data shape) and related plot function for a snapshot
+    Input: trajectory with dimension (sequence length, data shape), related plot function for a snapshot, title, figure size, save option and save path
     """
-    
+
+    arrays = []
+        
     for i in range(yt.shape[0]):
         plt.figure(figsize = figsize)
         plot(yt[i])
         plt.title(title)
         plt.axis('off')
-        display(plt.gcf())
+        fig = plt.gcf()
+        display(fig)
+        if save:
+            arrays.append(np.array(fig.canvas.renderer.buffer_rgba()))
         plt.close()
         clc(wait=True)
 
-def trajectories(yts, plot, titles = None, figsize = None):
+    if save:
+        imageio.mimsave(name.replace(".gif", "") + ".gif", arrays)
+        
+
+def trajectories(yts, plot, titles = None, figsize = None, save = False, name = 'gif'):
     """
     Gif of different trajectories
-    Input: list of trajectories with dimensions (sequence length, data shape) and plot function for a snapshot
+    Input: list of trajectories with dimensions (sequence length, data shape), plot function for a snapshot, list of titles, figure size, save option and save path
     """
-    
+
+    arrays = []
+
     for i in range(yts[0].shape[0]):
 
         plt.figure(figsize = figsize)
@@ -86,7 +101,13 @@ def trajectories(yts, plot, titles = None, figsize = None):
             plot(yts[j][i])
             plt.title(titles[j])
             plt.axis('off')
-        
-        display(plt.gcf())
+
+        fig = plt.gcf()
+        display(fig)
+        if save:
+            arrays.append(np.array(fig.canvas.renderer.buffer_rgba()))
         plt.close()
         clc(wait=True)
+
+    if save:
+        imageio.mimsave(name.replace(".gif", "") + ".gif", arrays)
