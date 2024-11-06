@@ -18,6 +18,6 @@ This repository contains the official source code implementation of the paper *t
 `FlowAroundObstacle/FlowAroundObstacle.ipynb` presents the flow around an obstacle test case where we reconstruct the high-dimensional velocity, whose dynamics is described by the unsteady Navier-Stokes equation, starting from few sensors data. Different inflow conditions and obstacle geometries are considered.
 
 <p align="center" width="100%">
-  <img height=100 src="./gifs/FlowAroundObstacle.gif" >
+  <img width=100% src="./gifs/FlowAroundObstacle.gif" >
   <br />
 </p>
