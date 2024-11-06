@@ -58,7 +58,9 @@ def multiplot(yts, plot, titles = None, figsize = None, save = False, name = "mu
         plot(yts[i])
         plt.title(titles[i])
         plt.axis('off')
-    plt.savefig(name.replace(".png", "") + ".png", transparent = True, bbox_inches='tight')
+    
+    if save:
+    	plt.savefig(name.replace(".png", "") + ".png", transparent = True, bbox_inches='tight')
 
 
 def trajectory(yt, plot, title = None, figsize = None, save = False, name = 'gif'):
