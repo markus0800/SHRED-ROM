@@ -49,7 +49,7 @@ def Padding(data, lag):
 def multiplot(yts, plot, titles = None, figsize = None, save = False, name = "multiplot"):
     """
     Multi plot of different snapshots
-    Input: list of snapshots, related plot function, list of titles and figure size
+    Input: list of snapshots, related plot function, list of titles, figure size, save option and save path
     """
     
     plt.figure(figsize = figsize)
