@@ -2,5 +2,5 @@
 __pycache__
 
 # KS outputs
-KS/SHRED/*
-KS/Test_results/*
+KuramotoSivashinsky/SHRED/*
+KuramotoSivashinsky/Test_results/*
