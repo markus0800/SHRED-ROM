@@ -141,24 +141,26 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
     
     return torch.tensor(train_error_list).detach().cpu().numpy(), torch.tensor(valid_error_list).detach().cpu().numpy()
  
-def forecast(forecaster, steps, test_dataset):
+def forecast(forecaster, input_data, steps, nsensors):
     '''
-    Forecast a test time series in time
-    Input
+    Forecast time series in time
+    Inputs
     	forecaster model (`torch.nn.Module`)
+        starting time series of dimension (ntrajectories, lag, nsensors+nparams)
     	number of forecasting steps
-    	test time series
+        number of sensors
+    Outputs
+        forecast of the time series in time
     '''   
 
-    input = test_dataset.clone()
-
-    forecast = torch.zeros(steps, test_dataset.shape[1])
+    forecast = []
     for i in range(steps):
-        forecast[i] = forecaster(input)
-        input[:-1] = input[1:]
-        input[-1] = forecast[i]
+        forecast.append(forecaster(input_data))
+        temp = input_data.clone()
+        input_data[:,:-1] = temp[:,1:]
+        input_data[:,-1, :nsensors] = forecast[i]
 
-    return forecast
+    return torch.stack(forecast, 1)
 
 
 
