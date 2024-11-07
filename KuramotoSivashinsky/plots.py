@@ -75,11 +75,12 @@ def plot_FOM_vs_Recon(x, t, fom: np.ndarray, recons: dict, std_recons: dict = No
                 if std_recons[keys[key_i]] is not None:
                     axs[2, kk].fill_between(x/2/np.pi, recons[keys[key_i]][:, time_to_plot[kk]] - 1.96 * std_recons[keys[key_i]][:, time_to_plot[kk]],
                                             recons[keys[key_i]][:, time_to_plot[kk]] +  1.96 * std_recons[keys[key_i]][:, time_to_plot[kk]],
-                                            color=colors[key_i+1], alpha=0.3)
+                                            color=colors[key_i+1], alpha=0.3,
+                                            label='95% CI - '+keys[key_i])
 
         axs[2, kk].set_title(r'Time $t={:.2f}$ s'.format(t[time_to_plot[kk]]), fontsize=fontsize)
         axs[2, kk].grid()
-        axs[2, kk].legend(framealpha=1, fontsize=fontsize)
+        axs[2, kk].legend(framealpha=1, fontsize=fontsize, ncols = 2)
         axs[2, kk].set_xlabel(r'Space $x/2\pi$', fontsize=fontsize)
         axs[2, kk].set_xlim(0, max(x/2/np.pi))
         
