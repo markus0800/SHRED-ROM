@@ -5,7 +5,7 @@ This repository contains the official source code implementation of the paper *-
 `utils` folder contains auxiliary functions to process and plot data, as well as to define and train the SHRED model. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams)
 
 ## Kuramoto-Sivashinsky
-The folder `KuramotoSivashinsky` contains the implementation of the Kuramoto-Sivashinsky test case where we reconstruct the high-dimensional field, starting from few sensor data while considering different initial conditions and noisy measures. Due to the low training cost of the SHRED architecture, we can train different SHRED models for different sparse sensors and produce a more-reliable reconstruction of the high-dimensional field, in terms of mean and variance, by averaging the predictions of the different models. This becomes useful when the sensors are sparse and the measures is noisy. The cases with and without padding are considered.
+The folder `KuramotoSivashinsky` contains the implementation of the Kuramoto-Sivashinsky test case where we reconstruct the high-dimensional Kuramoto-Sivashinsky state starting from few sensor data while considering different initial conditions and noisy measures
 
 <p align="center" width="100%">
   <img width=80% src="./KuramotoSivashinsky/KS.png" >
