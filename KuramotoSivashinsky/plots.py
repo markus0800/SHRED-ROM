@@ -101,7 +101,7 @@ def plot_FOM_vs_Recon(x, t, fom: np.ndarray, recons: dict, std_recons: dict = No
         plt.show()
         
         
-def plot_shred_error_bars(relative_test_errors: list[float]):
+def plot_shred_error_bars(relative_test_errors):
     fig, axs = plt.subplots(nrows=1, ncols=2, figsize=(25,5))
 
     n_configurations = len(relative_test_errors)
