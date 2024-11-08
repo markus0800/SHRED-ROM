@@ -124,3 +124,43 @@ def plot_shred_error_bars(relative_test_errors: list[float]):
     plt.tight_layout()
     
     plt.show()
+
+def plot_FOM_vs_SHRED(x, t, fom: np.ndarray, shred,
+                      cmap = sns.color_palette('icefire', as_cmap=True), cmap_res = cm.hot,
+                      nlevels = 50, filename = None, figsize=[6,5],
+                      fontsize=15, format = 'svg'):
+    
+    assert len(x) == fom.shape[0]
+    assert len(t) == fom.shape[1]
+    
+    nrows = 1
+    
+    keys = list(recons.keys())
+    ncols = 3
+    fig, axs = plt.subplots(nrows, ncols, figsize=(figsize[0] * ncols, figsize[1] * nrows))
+    
+    axs = axs.reshape(-1, ncols)
+
+    # FOM
+    levels = np.linspace(fom.min(), fom.max(), nlevels)
+    contour_plot(axs[0, 0], x, t, fom.T, title=r'State Trajectory', levels=levels, cmap=cmap, labels=[fontsize, fontsize])
+    
+    # Reconstructions and Residuals
+    contour_plot(axs[0, 1], x, t, shred.T, title='SHRED prediction', levels=levels, cmap=cmap, labels=[fontsize, fontsize])
+    contour_plot(axs[0, 2], x, t, np.abs(fom - shred).T, title='Prediction Error', levels=levels, cmap=cmap, labels=[fontsize, fontsize])
+        
+    axs[0,0].set_xticks([])
+    axs[0,0].set_yticks([])
+    axs[0,0].grid(False)
+    axs[0, 0].spines['top'].set_visible(False)
+    axs[0, 0].spines['right'].set_visible(False)
+    axs[0, 0].spines['left'].set_visible(False)
+    axs[0, 0].spines['bottom'].set_visible(False)
+
+    plt.tight_layout()
+    
+    if filename is not None:
+        plt.savefig(filename+'.'+format, format=format, dpi=250, bbox_inches='tight')
+        plt.close(fig)
+    else:
+        plt.show()
