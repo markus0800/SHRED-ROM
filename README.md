@@ -5,7 +5,7 @@ This repository contains the official source code implementation of the paper *-
 `utils` folder contains auxiliary functions to process and plot data, as well as to define and train the SHRED model. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams)
 
 ## Kuramoto-Sivashinsky
-The folder `KuramotoSivashinsky` contains the implementation of the Kuramoto-Sivashinsky test case where we reconstruct the high-dimensional Kuramoto-Sivashinsky state starting from few sensor data while considering different viscosity coefficients and noisy measurements
+The folder `KuramotoSivashinsky` contains the implementation of the Kuramoto-Sivashinsky test case where we reconstruct the high-dimensional Kuramoto-Sivashinsky state starting from few sensor data while considering different viscosity coefficients and noisy measurements.
 
 <p align="center" width="100%">
   <img width=100% src="./media/KuramotoSivashinsky.png" >
