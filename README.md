@@ -8,7 +8,7 @@ This repository contains the official source code implementation of the paper *-
 The folder `KuramotoSivashinsky` contains the implementation of the Kuramoto-Sivashinsky test case where we reconstruct the high-dimensional Kuramoto-Sivashinsky state starting from few sensor data while considering different viscosity coefficients and noisy measurements
 
 <p align="center" width="100%">
-  <img width=80% src="./media/KuramotoSivashinsky.png" >
+  <img width=100% src="./media/KuramotoSivashinsky.png" >
   <br />
 </p>
 
