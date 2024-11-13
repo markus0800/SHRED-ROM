@@ -78,9 +78,13 @@ def plot_FOM_vs_Recon(x, t, fom: np.ndarray, recons: dict, std_recons: dict = No
                                             color=colors[key_i+1], alpha=0.3,
                                             label='95% CI - '+keys[key_i])
 
+            ncols = 2
+        else:
+            ncols = 1
+
         axs[2, kk].set_title(r'Time $t={:.2f}$ s'.format(t[time_to_plot[kk]]), fontsize=fontsize)
         axs[2, kk].grid()
-        axs[2, kk].legend(framealpha=1, fontsize=fontsize, ncols = 2)
+        axs[2, kk].legend(framealpha=1, fontsize=fontsize, ncols = ncols)
         axs[2, kk].set_xlabel(r'Space $x/2\pi$', fontsize=fontsize)
         axs[2, kk].set_xlim(0, max(x/2/np.pi))
         
