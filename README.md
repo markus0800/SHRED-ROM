@@ -34,6 +34,6 @@ The folder `KuramotoSivashinsky` contains the implementation of the Kuramoto-Siv
 
 <p align="center" width="100%">
   <img width=50% src="./media/FluidAroundObstacle_UnsteadyParam.gif" >
-  <img width=30% src="./media/FluidAroundObstacle_UnsteadyParam_paramestimation.gif" >
+  <img width=50% src="./media/FluidAroundObstacle_UnsteadyParam_paramestimation.gif" >
   <br />
 </p>
