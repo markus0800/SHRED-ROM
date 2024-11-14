@@ -1,7 +1,6 @@
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import use, get_backend
 import imageio
 from IPython.display import clear_output as clc
 from IPython.display import display
