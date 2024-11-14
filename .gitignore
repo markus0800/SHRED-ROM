@@ -4,3 +4,4 @@ __pycache__
 # KS outputs
 KuramotoSivashinsky/SHRED/*
 KuramotoSivashinsky/Test_results/*
+KuramotoSivashinsky/snapshots_data.pkl

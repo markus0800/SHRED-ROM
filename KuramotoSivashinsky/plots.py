@@ -139,7 +139,6 @@ def plot_FOM_vs_SHRED(x, t, fom: np.ndarray, shred,
     
     nrows = 1
     
-    keys = list(recons.keys())
     ncols = 3
     fig, axs = plt.subplots(nrows, ncols, figsize=(figsize[0] * ncols, figsize[1] * nrows))
     
