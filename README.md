@@ -24,6 +24,16 @@ The folder `KuramotoSivashinsky` contains the implementation of the Kuramoto-Siv
 `FlowAroundObstacle.ipynb` presents the flow around an obstacle test case where we reconstruct the high-dimensional velocity, whose dynamics is described by the unsteady Navier-Stokes equation, starting from few sensors data while considering different inflow conditions and obstacle geometries
 
 <p align="center" width="100%">
-  <img width=60% src="./media/FlowAroundObstacle.gif" >
+  <img width=50% src="./media/FlowAroundObstacle.gif" >
+  <br />
+</p>
+
+
+## Flow around an obstacle with time-dependent angle of attack
+`FlowAroundObstacle_UnsteadyParam.ipynb` presents the flow around an obstacle test case where we reconstruct the high-dimensional velocity, whose dynamics is described by the unsteady Navier-Stokes equation, starting from few sensors data while considering different time-dependent inflow conditions and obstacle geometries
+
+<p align="center" width="100%">
+  <img width=50% src="./media/FluidAroundObstacle_UnsteadyParam.gif" >
+  <img width=40% src="./media/FluidAroundObstacle_UnsteadyParam_paramestimation.gif" >
   <br />
 </p>
