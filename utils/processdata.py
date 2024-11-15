@@ -1,11 +1,11 @@
 import torch
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import use, get_backend
 import imageio
 from IPython.display import clear_output as clc
 from IPython.display import display
 
+mae = lambda datatrue, datapred: (datatrue - datapred).abs().mean()
 mse = lambda datatrue, datapred: (datatrue - datapred).pow(2).sum(axis = -1).mean()
 mre = lambda datatrue, datapred: ((datatrue - datapred).pow(2).sum(axis = -1).sqrt() / (datatrue).pow(2).sum(axis = -1).sqrt()).mean()
 num2p = lambda prob : ("%.2f" % (100*prob)) + "%"
