@@ -46,7 +46,7 @@ def Padding(data, lag):
     return data_out
 
 
-def multiplot(yts, plot, titles = None, figsize = None, save = False, name = "multiplot"):
+def multiplot(yts, plot, titles = None, figsize = None, vertical = False, save = False, name = "multiplot"):
     """
     Multi plot of different snapshots
     Input: list of snapshots, related plot function, list of titles, figure size, save option and save path
@@ -54,7 +54,10 @@ def multiplot(yts, plot, titles = None, figsize = None, save = False, name = "mu
     
     plt.figure(figsize = figsize)
     for i in range(len(yts)):
-        plt.subplot(20, 20, i+1)
+        if vertical:
+            plt.subplot(len(yts), 1, i+1)
+        else:
+            plt.subplot(1, len(yts), i+1)
         plot(yts[i])
         plt.title(titles[i])
         plt.axis('off')
@@ -87,7 +90,7 @@ def trajectory(yt, plot, title = None, figsize = None, save = False, name = 'gif
         imageio.mimsave(name.replace(".gif", "") + ".gif", arrays)
         
 
-def trajectories(yts, plot, titles = None, figsize = None, save = False, name = 'gif'):
+def trajectories(yts, plot, titles = None, figsize = None, vertical = False, save = False, name = 'gif'):
     """
     Gif of different trajectories
     Input: list of trajectories with dimensions (sequence length, data shape), plot function for a snapshot, list of titles, figure size, save option and save path
@@ -99,7 +102,10 @@ def trajectories(yts, plot, titles = None, figsize = None, save = False, name = 
 
         plt.figure(figsize = figsize)
         for j in range(len(yts)):
-            plt.subplot(20, 20, j+1)
+            if vertical:
+                plt.subplot(len(yts), 1, j+1)
+            else:
+                plt.subplot(1, len(yts), j+1)
             plot(yts[j][i])
             plt.title(titles[j])
             plt.axis('off')
