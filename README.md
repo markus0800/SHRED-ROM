@@ -8,7 +8,7 @@ This repository contains the official source code implementation of the paper *-
 The folder `KuramotoSivashinsky` contains the implementation of the Kuramoto-Sivashinsky test case where we reconstruct the high-dimensional Kuramoto-Sivashinsky state starting from few sensors while considering different viscosity coefficients and noisy measurements
 
 <p align="center" width="100%">
-  <img width=100% src="./media/KuramotoSivashinsky.png" >
+  <img width=80% src="./media/KuramotoSivashinsky.png" >
   <br />
 </p>
 
@@ -16,7 +16,7 @@ The folder `KuramotoSivashinsky` contains the implementation of the Kuramoto-Siv
 `Pinball.ipynb` presents the pinball test case where we reconstruct the high-dimensional density, whose dynamics is described by the Fokker-Planck equation, starting from the few (fixed or moving) sensors while considering different velocities of the three rotating cylinders
 
 <p align="center" width="100%">
-  <img width=90% src="./media/Pinball.gif" >
+  <img width=80% src="./media/Pinball.gif" >
   <br />
 </p>
 
