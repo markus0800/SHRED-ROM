@@ -16,7 +16,7 @@ The folder `KuramotoSivashinsky` contains the implementation of the Kuramoto-Siv
 `Pinball.ipynb` presents the pinball test case where we reconstruct the high-dimensional density, whose dynamics is described by the Fokker-Planck equation, starting from few sensor data while considering different velocities of the three rotating cylinders
 
 <p align="center" width="100%">
-  <img width=80% src="./media/Pinball.gif" >
+  <img width=90% src="./media/Pinball.gif" >
   <br />
 </p>
 
