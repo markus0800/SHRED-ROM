@@ -1,7 +1,7 @@
 # SHRED-ROM
 
 This repository contains the official source code implementation of the paper *---title---*
-
+(aa)[./media/SHRED-ROM.pdf]
 <p align="center" width="100%">
   <img width=100% src="./media/SHRED-ROM.pdf" >
   <br />
