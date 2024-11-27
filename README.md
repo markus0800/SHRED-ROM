@@ -3,7 +3,7 @@
 This repository contains the official source code implementation of the paper *---title---*
 
 <p align="center" width="100%">
-  <img width=100% src="./media/SHRED-ROM.pdf" >
+  <img width=100% src="./media/SHRED-ROM.png" >
   <br />
 </p>
 
