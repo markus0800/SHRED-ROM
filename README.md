@@ -7,7 +7,7 @@ This repository contains the official source code implementation of the paper *-
 
 
 <p align="center" width="100%">
-  <img width=90% src="./media/SHRED-ROM.png" >
+  <img width=100% src="./media/SHRED-ROM.png" >
   <br />
 </p>
 
