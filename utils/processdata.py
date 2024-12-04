@@ -46,7 +46,7 @@ def Padding(data, lag):
     return data_out
 
 
-def multiplot(yts, plot, titles = None, figsize = None, vertical = False, save = False, name = "multiplot"):
+def multiplot(yts, plot, titles = None, figsize = None, vertical = False, axis = False, save = False, name = "multiplot"):
     """
     Multi plot of different snapshots
     Input: list of snapshots, related plot function, list of titles, figure size, save option and save path
@@ -60,13 +60,14 @@ def multiplot(yts, plot, titles = None, figsize = None, vertical = False, save =
             plt.subplot(1, len(yts), i+1)
         plot(yts[i])
         plt.title(titles[i])
-        plt.axis('off')
+        if not axis:
+            plt.axis('off')
     
     if save:
     	plt.savefig(name.replace(".png", "") + ".png", transparent = True, bbox_inches='tight')
 
 
-def trajectory(yt, plot, title = None, figsize = None, save = False, name = 'gif'):
+def trajectory(yt, plot, title = None, figsize = None, axis = False, save = False, name = 'gif'):
     """
     Trajectory gif
     Input: trajectory with dimension (sequence length, data shape), related plot function for a snapshot, title, figure size, save option and save path
@@ -78,7 +79,8 @@ def trajectory(yt, plot, title = None, figsize = None, save = False, name = 'gif
         plt.figure(figsize = figsize)
         plot(yt[i])
         plt.title(title)
-        plt.axis('off')
+        if not axis:
+            plt.axis('off')
         fig = plt.gcf()
         display(fig)
         if save:
@@ -90,7 +92,7 @@ def trajectory(yt, plot, title = None, figsize = None, save = False, name = 'gif
         imageio.mimsave(name.replace(".gif", "") + ".gif", arrays)
         
 
-def trajectories(yts, plot, titles = None, figsize = None, vertical = False, save = False, name = 'gif'):
+def trajectories(yts, plot, titles = None, figsize = None, vertical = False, axis = False, save = False, name = 'gif'):
     """
     Gif of different trajectories
     Input: list of trajectories with dimensions (sequence length, data shape), plot function for a snapshot, list of titles, figure size, save option and save path
@@ -108,7 +110,8 @@ def trajectories(yts, plot, titles = None, figsize = None, vertical = False, sav
                 plt.subplot(1, len(yts), j+1)
             plot(yts[j][i])
             plt.title(titles[j])
-            plt.axis('off')
+            if not axis:
+                plt.axis('off')
 
         fig = plt.gcf()
         display(fig)
