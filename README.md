@@ -18,7 +18,7 @@ This repository contains the official source code implementation of the paper *-
 `KuramotoSivashinsky.ipynb` presents the Kuramoto-Sivashinsky test case where we reconstruct the high-dimensional state, whose dynamics is described by the KuramotoSivashinsky equation, starting from few sensor data while considering different viscosities and initial conditions
 
 <p align="center" width="100%">
-  <img width=100% src="./media/KuramotoSivashinsky.png" >
+  <img width=90% src="./media/KuramotoSivashinsky.png" >
   <br />
 </p>
 
