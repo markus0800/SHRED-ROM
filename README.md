@@ -15,7 +15,7 @@ This repository contains the official source code implementation of the paper *-
 
 
 ## Kuramoto-Sivashinsky
-The folder `KuramotoSivashinsky` contains the implementation of the Kuramoto-Sivashinsky test case where we reconstruct the high-dimensional Kuramoto-Sivashinsky state starting from few sensor data while considering different viscosity coefficients and noisy measurements
+`KuramotoSivashinsky.ipynb` presents the Kuramoto-Sivashinsky test case where we reconstruct the high-dimensional state, whose dynamics is described by the KuramotoSivashinsky equation, starting from few sensor data while considering different viscosities and initial conditions
 
 <p align="center" width="100%">
   <img width=100% src="./media/KuramotoSivashinsky.png" >

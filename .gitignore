@@ -1,7 +1,4 @@
 *.ipynb_checkpoints
 __pycache__
-
-# KS outputs
-KuramotoSivashinsky/SHRED/*
-KuramotoSivashinsky/Test_results/*
-KuramotoSivashinsky/snapshots_data.pkl
+Data
+NN
