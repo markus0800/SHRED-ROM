@@ -14,13 +14,20 @@ This repository contains the official source code implementation of the paper *R
 </p>
 
 ## Shallow Water
-`PlanetSWE.ipynb` presents the Shallow Water test case where we reconstruct the high-dimensional velocity on a sphere, whose dynamics is described by the Shallow Water Equations, starting from few sensor data.
+`SWE.ipynb` presents the Shallow Water test case where we reconstruct the high-dimensional velocity on a sphere, whose dynamics is described by the Shallow Water Equations, starting from few sensor data.
 
 <p align="center" width="100%">
-  <img width=80% src="./media/PlanetSWE.gif" >
+  <img width=80% src="./media/SWE.gif" >
   <br />
 </p>
 
+## GoPro physics
+`GoPro.ipynb` presents GoPro physics test case where we reconstruct high-dimensional videos starting from few pixel data.
+
+<p align="center" width="100%">
+  <img width=80% src="./media/GoPro.gif" >
+  <br />
+</p>
 
 ## Kuramoto-Sivashinsky
 `KuramotoSivashinsky.ipynb` presents the Kuramoto-Sivashinsky test case where we reconstruct the high-dimensional state, whose dynamics is described by the Kuramoto-Sivashinsky equation, starting from few sensor data while considering different viscosities and initial conditions.
@@ -30,7 +37,7 @@ This repository contains the official source code implementation of the paper *R
   <br />
 </p>
 
-## Fluidic Pinball
+## Fluidic pinball
 `Pinball.ipynb` presents the fluidic pinball test case where we reconstruct the high-dimensional density, whose dynamics is described by the Fokker-Planck equation, starting from few sensor data while considering different velocities of the three rotating cylinders.
 
 <p align="center" width="100%">
