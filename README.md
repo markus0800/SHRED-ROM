@@ -25,7 +25,7 @@ This repository contains the official source code implementation of the paper *R
 `GoPro.ipynb` presents GoPro physics test case where we reconstruct high-dimensional videos starting from few pixel data.
 
 <p align="center" width="100%">
-  <img width=80% src="./media/GoPro.gif" >
+  <img width=100% src="./media/GoPro.gif" >
   <br />
 </p>
 
