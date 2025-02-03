@@ -38,7 +38,7 @@ This repository contains the official source code implementation of the paper *R
 </p>
 
 ## Fluidic pinball
-`Pinball.ipynb` presents the fluidic pinball test case where we reconstruct the high-dimensional density, whose dynamics is described by the Fokker-Planck equation, starting from few sensor data while considering different velocities of the three rotating cylinders.
+`Pinball.ipynb` presents the fluidic pinball test case where we reconstruct the high-dimensional density, whose dynamics is described by the advection-diffusion partial differential equation, starting from few sensor data while considering different velocities of the three rotating cylinders.
 
 <p align="center" width="100%">
   <img width=80% src="./media/Pinball.gif" >
@@ -46,7 +46,7 @@ This repository contains the official source code implementation of the paper *R
 </p>
 
 ## Flow around an obstacle
-`FlowAroundObstacle.ipynb` presents the flow around an obstacle test case where we reconstruct the high-dimensional velocity, whose dynamics is described by the unsteady Navier-Stokes equation, starting from few sensor data while considering different inflow conditions and obstacle geometries.
+`FlowAroundObstacle.ipynb` presents the flow around an obstacle test case where we reconstruct the high-dimensional velocity, whose dynamics is described by the unsteady Navier-Stokes equations, starting from few sensor data while considering different inflow conditions and obstacle geometries.
 
 <p align="center" width="100%">
   <img width=50% src="./media/FlowAroundObstacle.gif" >
