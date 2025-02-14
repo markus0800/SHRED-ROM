@@ -18,6 +18,12 @@ This repository contains the official source code implementation of the paper *R
 Importantly, computational efficiency and memory usage are enhanced by reducing the dimensionality of full-order snapshots, allowing for compressive training of the networks, with minimal hyperparameter tuning and laptop-level computing.
 
 ## Usage
+
+`utils` folder contains auxiliary functions to preprocess and plot data, as well as to define and train SHRED-ROM. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams). 
+<br />
+<br />
+<br />
+
 ```python
 import torch
 import numpy as np
@@ -86,11 +92,6 @@ states_POD_hat = shred(test_data_in)
 states_hat = (states_POD_hat @ V).reshape(ntest, ntimesteps, nstate)
 print("Mean relative SHRED-ROM reconstruction error: %s." % num2p(mre(Ytest, Ytest_hat)))
 ```
-
-`utils` folder contains auxiliary functions to preprocess and plot data, as well as to define and train SHRED-ROM. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams).
-<br />
-<br />
-<br />
 
 ## Shallow Water
 `SWE.ipynb` presents the Shallow Water test case where we reconstruct the high-dimensional velocity on a sphere, whose dynamics is described by the Shallow Water Equations, starting from few sensor data.
