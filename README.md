@@ -1,6 +1,6 @@
 # Reduced order modeling with shallow recurrent decoder networks
 
-[![arXiv](https://img.shields.io/badge/PREPRINT-000080)](https://arxiv.org/)
+[![arXiv](https://img.shields.io/badge/PREPRINT-008080)](https://arxiv.org/)
 [![Data](https://img.shields.io/badge/DATA-FF00FF)](https://doi.org/10.5281/zenodo.14524524)
 
 ## Overview
