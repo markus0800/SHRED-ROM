@@ -25,8 +25,10 @@ from sklearn.utils.extmath import randomized_svd
 from utils.processdata import mre, num2p                  # Error metrics and format
 from utils.processdata import Padding, TimeSeriesDataset  # Data preprocessing
 from utils.models import SHRED, fit                       # SHRED-ROM model and training
+```
 
- # Generate or import data
+```python
+# Generate or import data
 states = ... # Generate or import the state snapshots as a torch.tensor with shape [nparameters, ntimesteps, nstate]
 sensors = ... # Generate, import or extract the sensor data as a torch.tensor with shape [nparameters, ntimesteps, nsensors]
 nparameters, ntimesteps, nstate = states.shape 
@@ -73,7 +75,6 @@ shred.freeze()
 states_POD_hat = shred(test_data_in)
 states_hat = (states_POD_hat @ V).reshape(ntest, ntimesteps, nstate)
 print("Mean relative SHRED-ROM reconstruction error: %s." % num2p(mre(Ytest, Ytest_hat)))
-
 ```
 
 `utils` folder contains auxiliary functions to preprocess and plot data, as well as to define and train SHRED-ROM. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams).
