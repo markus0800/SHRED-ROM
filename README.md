@@ -1,8 +1,7 @@
 # SHRED-ROM
 
-This repository contains the official source code implementation of the paper *Reduced order modeling with shallow recurrent decoder networks*.
-
-The data can be found at [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14524524.svg)](https://doi.org/10.5281/zenodo.14524524)
+PRE-PRINT: *Reduced order modeling with shallow recurrent decoder networks*.
+DATA: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14524524.svg)](https://doi.org/10.5281/zenodo.14524524)
 
 ## Overview
 <p align="center" width="100%">
