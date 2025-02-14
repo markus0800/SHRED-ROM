@@ -14,6 +14,7 @@ This repository contains the official source code implementation of the paper *R
 - dealing with both physical, geometrical and time-dependent parametric dependencies, while being agnostic to the paraemter values
 - estimating unknown parameters
 - coping with both fixed or mobile sensors
+  
 Importantly, computational efficiency and memory usage are enhanced by reducing the dimensionality of full-order snapshots, allowing for compressive training of the networks, with minimal hyperparameter tuning and laptop-level computing.
 
 ## Usage
