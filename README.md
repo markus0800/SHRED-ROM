@@ -20,9 +20,6 @@ Importantly, computational efficiency and memory usage are enhanced by reducing 
 ## Usage
 
 `utils` folder contains auxiliary functions to preprocess and plot data, as well as to define and train SHRED-ROM. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams). 
-<br />
-<br />
-<br />
 
 ```python
 import torch
