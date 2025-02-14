@@ -33,7 +33,9 @@ states = ... # Generate or import the state snapshots as a torch.tensor with sha
 sensors = ... # Generate, import or extract the sensor data as a torch.tensor with shape [nparameters, ntimesteps, nsensors]
 nparameters, ntimesteps, nstate = states.shape 
 nsensors = sensors.shape[2]
+```
 
+```python
 # Train-validation-test splitting
 np.random.seed(0)
 ntrain = round(0.8 * nparameters)
@@ -45,12 +47,16 @@ idx_valid = idx_valid_test[::2]
 idx_test = idx_valid_test[1::2]
 nvalid = idx_valid.shape[0]
 ntest = idx_test.shape[0]
+```
 
+```python
 # Proper Orthogonal Decomposition
 r = ... # Define the number of POD modes
 U, S, V = randomized_svd(states[idx_train].reshape(-1, nstate).numpy(), n_components = r) 
 states_POD = states @ V.transpose()
+```
 
+```python
 # Padding and lagging
 lag = ... # Define the lag parameter
 
@@ -65,11 +71,15 @@ test_data_out = Padding(states_POD[idx_test], 1).squeeze(1)
 train_dataset = TimeSeriesDataset(train_data_in, train_data_out)
 valid_dataset = TimeSeriesDataset(valid_data_in, valid_data_out)
 test_dataset = TimeSeriesDataset(test_data_in, test_data_out)
+```
 
+```python
 # SHRED-ROM training
 shred = SHRED(nsensors, r, hidden_size = 64, hidden_layers = 2, decoder_sizes = [350, 400], dropout = 0.1)
 train_errors, valid_errors = fit(shred, train_dataset, valid_dataset, batch_size = 64, epochs = 100, lr = 1e-2, verbose = True, patience = 10)
+```
 
+```python
 # SHRED-ROM evaluation
 shred.freeze()
 states_POD_hat = shred(test_data_in)
