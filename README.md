@@ -98,7 +98,7 @@ print("Mean relative SHRED-ROM reconstruction error: %s." % num2p(mre(Ytest, Yte
 
 ## Data
 
-The *data* can be downloaded from [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14524524.svg)](https://doi.org/10.5281/zenodo.14524524)
+The *data* can be downloaded from [https://doi.org/10.5281/zenodo.14524524](https://doi.org/10.5281/zenodo.14524524)
 
 ## Utilities
 
