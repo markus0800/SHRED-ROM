@@ -18,11 +18,8 @@
   
 Importantly, computational efficiency and memory usage are enhanced by reducing the dimensionality of full-order snapshots, allowing for compressive training of the networks, with minimal hyperparameter tuning and laptop-level computing.
 
+
 ## Quickstart
-
-The data can be downloaded at the link [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14524524.svg)](https://doi.org/10.5281/zenodo.14524524)
-
-`utils` folder contains auxiliary functions to preprocess and plot data, as well as to define and train SHRED-ROM. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams). 
 
 ```python
 import torch
@@ -92,6 +89,14 @@ states_POD_hat = shred(test_data_in)
 states_hat = (states_POD_hat @ V).reshape(ntest, ntimesteps, nstate)
 print("Mean relative SHRED-ROM reconstruction error: %s." % num2p(mre(Ytest, Ytest_hat)))
 ```
+
+## Data
+
+The *data* can be downloaded from [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14524524.svg)](https://doi.org/10.5281/zenodo.14524524)
+
+## Utilities
+
+`utils` folder contains auxiliary functions to preprocess and plot data, as well as to define and train SHRED-ROM. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams). 
 
 ## Shallow Water
 `SWE.ipynb` presents the Shallow Water test case where we reconstruct the high-dimensional velocity on a sphere, whose dynamics is described by the Shallow Water Equations, starting from few sensor data.
