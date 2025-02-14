@@ -20,6 +20,8 @@ Importantly, computational efficiency and memory usage are enhanced by reducing 
 
 ## Quickstart
 
+The data can be downloaded at the link [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14524524.svg)](https://doi.org/10.5281/zenodo.14524524)
+
 `utils` folder contains auxiliary functions to preprocess and plot data, as well as to define and train SHRED-ROM. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams). 
 
 ```python
