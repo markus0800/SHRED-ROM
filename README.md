@@ -91,9 +91,9 @@ train_errors, valid_errors = fit(shred, train_dataset, valid_dataset, batch_size
 # SHRED-ROM evaluation
 
 shred.freeze()
-states_POD_hat = shred(test_data_in)
-states_hat = (states_POD_hat @ V).reshape(ntest, ntimesteps, nstate)
-print("Mean relative SHRED-ROM reconstruction error: %s." % num2p(mre(Ytest, Ytest_hat)))
+states_POD_test_hat = shred(test_data_in)
+states_POD_test_hat = (states_POD_test_hat @ V).reshape(ntest, ntimesteps, nstate)
+print("Mean relative SHRED-ROM reconstruction error: %s." % num2p(mre(states[idx_test], states_POD_test_hat)))
 ```
 
 ## Data
