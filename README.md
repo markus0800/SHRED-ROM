@@ -1,6 +1,6 @@
 # Reduced order modeling with shallow recurrent decoder networks
 
-[![arXiv](https://img.shields.io/badge/PREPRINT-FF00FF)](https://arxiv.org/)
+[![arXiv](https://img.shields.io/badge/PREPRINT-FF00FF)](https://arxiv.org/abs/2502.10930)
 [![Data](https://img.shields.io/badge/DATA-008080)](https://doi.org/10.5281/zenodo.14524524)
 
 ## Overview
@@ -151,12 +151,12 @@ The *data* can be downloaded from [https://doi.org/10.5281/zenodo.14524524](http
 If you use this code for your work, please cite
 ```bibtex
 @misc{tomasetto2025shredrom,
-      title={Reduced order modeling with shallow recurrent decoder networks}, 
-      author={M. Tomasetto, J. P. Williams, F. Braghin, A. Manzoni, J. N. Kutz},
+      title={Reduced Order Modeling with Shallow Recurrent Decoder Networks}, 
+      author={Matteo Tomasetto and Jan P. Williams and Francesco Braghin and Andrea Manzoni and J. Nathan Kutz},
       year={2025},
-      eprint={},
+      eprint={2502.10930},
       archivePrefix={arXiv},
-      primaryClass={},
-      url={}, 
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2502.10930}, 
 }
 ```
