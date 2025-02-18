@@ -10,7 +10,7 @@
 </p>
 
 
-*SHallow REcurrent Decoder-based Reduced Order Model* (SHRED-ROM) is an ultra-hyperreduced order modeling framework aiming at reconstructing high-dimensional data from limited sensor measurements in multiple scenarios. Thanks to a composition of Long-Short Term Memory network (LSTM) and a Shallow Decoder Network (SDN), SHRED-ROM is capable of
+*SHallow REcurrent Decoder-based Reduced Order Model* (SHRED-ROM) is an ultra-hyperreduced order modeling framework aiming at reconstructing high-dimensional data from limited sensor measurements in multiple scenarios. Thanks to the composition of a Long-Short Term Memory network (LSTM) and a Shallow Decoder Network (SDN), SHRED-ROM is capable of
 - Reconstructing high-dimensional data (such as synthetic or video data) from sparse sensor measurements in new scenarios unseen during training, regardless of sensor placement,
 - Dealing with both physical, geometrical and time-dependent parametric dependencies, while being agnostic to the paraemter values,
 - Estimating unknown parameters,
