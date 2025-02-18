@@ -144,3 +144,19 @@ The *data* can be downloaded from [https://doi.org/10.5281/zenodo.14524524](http
   <img width=40% src="./media/FlowAroundObstacle_paramestimation.gif" >
   <br />
 </p>
+
+---
+
+## Cite
+If you use this code for your work, please cite
+```bibtex
+@misc{tomasetto2025shredrom,
+      title={Reduced order modeling with shallow recurrent decoder networks}, 
+      author={M. Tomasetto, J. P. Williams, F. Braghin, A. Manzoni, J. N. Kutz},
+      year={2025},
+      eprint={},
+      archivePrefix={arXiv},
+      primaryClass={},
+      url={}, 
+}
+```
