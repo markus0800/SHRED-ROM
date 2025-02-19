@@ -12,7 +12,7 @@ class SHRED(torch.nn.Module):
         
         Inputs
         	input size (e.g. number of sensors)
-        	output size (e.g. full-order variable dimension)
+        	output size (e.g. full-order variable dimension or number of POD coefficients)
         	size of LSTM hidden layers (default to 64)
         	number of LSTM hidden layers (default to 2)
         	list of decoder layers sizes (default to [350, 400])
