@@ -10,7 +10,6 @@ class SHRED(torch.nn.Module):
         '''
         SHRED model definition
         
-        
         Inputs
         	input size (e.g. number of sensors)
         	output size (e.g. full-order variable dimension)
