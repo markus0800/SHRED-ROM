@@ -2,6 +2,7 @@
 
 [![arXiv](https://img.shields.io/badge/PREPRINT-FF00FF)](https://arxiv.org/abs/2502.10930)
 [![Data](https://img.shields.io/badge/DATA-008080)](https://doi.org/10.5281/zenodo.14524524)
+[![Video](https://img.shields.io/badge/VIDEO-bdb76b)](https://www.youtube.com/watch?v=8rtGmVxfkcQ)
 
 ## Overview
 <p align="center" width="100%">
