@@ -98,7 +98,10 @@ print("Mean relative SHRED-ROM reconstruction error: %s." % num2p(mre(states[idx
 ```
 
 ## Tutorial
-`Tutorial.ipynb` presents a stand-alone SHRED-ROM application to a three-compartments drug diffusion model where we reconstruct the amount of drug in highly and poorly perfused tissues starting from the drag concentration in the blood, while considering different drug elimination rates [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MatteoTomasetto/SHRED-ROM/blob/main/Tutorial.ipy)
+`Tutorial.ipynb` presents a stand-alone SHRED-ROM application to a three-compartments drug diffusion model where we reconstruct the amount of drug in highly and poorly perfused tissues starting from the drag concentration in the blood, while considering different drug elimination rates
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MatteoTomasetto/SHRED-ROM/blob/main/Tutorial.ipynb)
+
 
 ## Shallow Water
 `SWE.ipynb` presents the Shallow Water test case where we reconstruct the high-dimensional velocity on a sphere, whose dynamics is described by the Shallow Water Equations, starting from few sensor data.
