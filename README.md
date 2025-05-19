@@ -97,11 +97,14 @@ states_POD_test_hat = (states_POD_test_hat @ V).reshape(ntest, ntimesteps, nstat
 print("Mean relative SHRED-ROM reconstruction error: %s." % num2p(mre(states[idx_test], states_POD_test_hat)))
 ```
 
-## Tutorial
-`Tutorial.ipynb` presents a stand-alone SHRED-ROM application to a three-compartments drug diffusion model where we reconstruct the amount of drug in highly and poorly perfused tissues starting from the drug concentration in the blood, while considering different drug elimination rates.
+## Tutorials
+`DrugDiffusionModel.ipynb` presents a stand-alone SHRED-ROM application to a three-compartments drug diffusion model where we reconstruct the amount of drug in highly and poorly perfused tissues starting from the drug concentration in the blood, while considering different drug elimination rates.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MatteoTomasetto/SHRED-ROM/blob/main/Tutorial.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MatteoTomasetto/SHRED-ROM/blob/main/DrugDiffusionModel.ipynb)
 
+`DoubleGyreFlow.ipynb` presents a stand-alone SHRED-ROM application to the double gyre flow model where we reconstruct the velocity fields of two interacting vortices starting from few sensor measurements of the horizontal velocity only while considering different perturbation amplitudes and frequencies.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MatteoTomasetto/SHRED-ROM/blob/main/DoubleGyreFlow.ipynb)
 
 ## Shallow Water
 `SWE.ipynb` presents the Shallow Water test case where we reconstruct the high-dimensional velocity on a sphere, whose dynamics is described by the Shallow Water Equations, starting from few sensor data.
