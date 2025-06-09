@@ -102,7 +102,7 @@ print("Mean relative SHRED-ROM reconstruction error: %s." % num2p(mre(states[idx
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MatteoTomasetto/SHRED-ROM/blob/main/DrugDiffusionModel.ipynb)
 
-`DoubleGyreFlow.ipynb` presents a stand-alone SHRED-ROM application to the double gyre flow model where we reconstruct the velocity fields of two interacting vortices starting from few sensor measurements of the horizontal velocity only while considering different perturbation amplitudes and frequencies.
+`DoubleGyreFlow.ipynb` presents a stand-alone SHRED-ROM application to the double gyre flow model where we reconstruct the velocity fields of two interacting vortices starting from few sensor measurements of the horizontal velocity only while considering different perturbation amplitudes and frequencies. Both POD-based and Fourier-based compressive training strategies are considered.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MatteoTomasetto/SHRED-ROM/blob/main/DoubleGyreFlow.ipynb)
 
