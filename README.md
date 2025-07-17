@@ -97,6 +97,13 @@ states_POD_test_hat = (states_POD_test_hat @ V).reshape(ntest, ntimesteps, nstat
 print("Mean relative SHRED-ROM reconstruction error: %s." % num2p(mre(states[idx_test], states_POD_test_hat)))
 ```
 
+## Getting started
+The required packages are listed in  the `requirements.txt` file and may be installed through the command 
+```bash
+pip install -r requirements.txt
+```
+Some test cases required FEniCS to generate and handle function data. [Click here](https://fenicsproject.org/download/archive/) for installation instructions.
+
 ## Tutorials
 `DrugDiffusionModel.ipynb` presents a stand-alone SHRED-ROM application to a three-compartments drug diffusion model where we reconstruct the amount of drug in highly and poorly perfused tissues starting from the drug concentration in the blood, while considering different drug elimination rates.
 
