@@ -159,6 +159,7 @@ The *data* can be downloaded from [https://doi.org/10.5281/zenodo.14524524](http
 
 ## Utilities
 `utils` folder contains auxiliary functions to preprocess and plot data, as well as to define and train SHRED-ROM. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams).
+
 ---
 
 ## Cite
