@@ -1,0 +1,19 @@
+# Data and NNs handling
+torch=2.4.1
+numpy==1.24.4
+scipy==1.10.1
+scikit-learn==1.3.2
+
+# Data generation
+# dolfin==2019.2.0.13.dev0
+# see https://fenicsproject.org/download/archive/ for installation
+
+# Notebook output
+tqdm==4.66.2
+IPython==8.12.3
+
+# Visualization
+matplotlib==3.4.3
+seaborn==0.13.2
+cmcrameri==1.9
+imageio==2.34.0
