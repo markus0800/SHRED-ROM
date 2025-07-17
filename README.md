@@ -98,7 +98,7 @@ print("Mean relative SHRED-ROM reconstruction error: %s." % num2p(mre(states[idx
 ```
 
 ## Getting started
-The required packages are listed in  the `requirements.txt` file and may be installed through the command 
+The required packages are listed in  the `requirements.txt` file and may be installed in few minutes through the command 
 ```bash
 pip install -r requirements.txt
 ```
