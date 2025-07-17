@@ -97,6 +97,15 @@ states_POD_test_hat = (states_POD_test_hat @ V).reshape(ntest, ntimesteps, nstat
 print("Mean relative SHRED-ROM reconstruction error: %s." % num2p(mre(states[idx_test], states_POD_test_hat)))
 ```
 
+## Tutorials
+`DrugDiffusionModel.ipynb` presents a stand-alone SHRED-ROM application to a three-compartments drug diffusion model where we reconstruct the amount of drug in highly and poorly perfused tissues starting from the drug concentration in the blood, while considering different drug elimination rates.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MatteoTomasetto/SHRED-ROM/blob/main/DrugDiffusionModel.ipynb)
+
+`DoubleGyreFlow.ipynb` presents a stand-alone SHRED-ROM application to the double gyre flow model where we reconstruct the velocity fields of two interacting vortices starting from few sensor measurements of the horizontal velocity, while considering different perturbation amplitudes and frequencies, as well as POD-based and Fourier-based compressive training strategies.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MatteoTomasetto/SHRED-ROM/blob/main/DoubleGyreFlow.ipynb)
+
 ## Getting started
 The required packages are listed in  the `requirements.txt` file and may be installed in few minutes through the command 
 ```bash
@@ -106,18 +115,6 @@ Some test cases required FEniCS to generate and handle function data. [Click her
 
 ## Data
 The *data* can be downloaded from [https://doi.org/10.5281/zenodo.14524524](https://doi.org/10.5281/zenodo.14524524). We provide both the generated data and the trained SHRED-ROMs to replicate the results presented in the manuscript in few minutes.
-
-## Utilities
-`utils` folder contains auxiliary functions to preprocess and plot data, as well as to define and train SHRED-ROM. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams). 
-
-## Tutorials
-`DrugDiffusionModel.ipynb` presents a stand-alone SHRED-ROM application to a three-compartments drug diffusion model where we reconstruct the amount of drug in highly and poorly perfused tissues starting from the drug concentration in the blood, while considering different drug elimination rates.
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MatteoTomasetto/SHRED-ROM/blob/main/DrugDiffusionModel.ipynb)
-
-`DoubleGyreFlow.ipynb` presents a stand-alone SHRED-ROM application to the double gyre flow model where we reconstruct the velocity fields of two interacting vortices starting from few sensor measurements of the horizontal velocity, while considering different perturbation amplitudes and frequencies, as well as POD-based and Fourier-based compressive training strategies.
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MatteoTomasetto/SHRED-ROM/blob/main/DoubleGyreFlow.ipynb)
 
 ## Shallow Water
 `SWE.ipynb` presents the Shallow Water test case where we reconstruct the high-dimensional velocity on a sphere, whose dynamics is described by the Shallow Water Equations, starting from few sensor data.
@@ -160,6 +157,8 @@ The *data* can be downloaded from [https://doi.org/10.5281/zenodo.14524524](http
   <br />
 </p>
 
+## Utilities
+`utils` folder contains auxiliary functions to preprocess and plot data, as well as to define and train SHRED-ROM. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams).
 ---
 
 ## Cite
