@@ -104,6 +104,12 @@ pip install -r requirements.txt
 ```
 Some test cases required FEniCS to generate and handle function data. [Click here](https://fenicsproject.org/download/archive/) for installation instructions.
 
+## Data
+The *data* can be downloaded from [https://doi.org/10.5281/zenodo.14524524](https://doi.org/10.5281/zenodo.14524524). We provide both the generated data and the trained SHRED-ROMs to replicate the results presented in the manuscript in few minutes.
+
+## Utilities
+`utils` folder contains auxiliary functions to preprocess and plot data, as well as to define and train SHRED-ROM. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams). 
+
 ## Tutorials
 `DrugDiffusionModel.ipynb` presents a stand-alone SHRED-ROM application to a three-compartments drug diffusion model where we reconstruct the amount of drug in highly and poorly perfused tissues starting from the drug concentration in the blood, while considering different drug elimination rates.
 
@@ -153,12 +159,6 @@ Some test cases required FEniCS to generate and handle function data. [Click her
   <img width=40% src="./media/FlowAroundObstacle_paramestimation.gif" >
   <br />
 </p>
-
-## Data
-The *data* can be downloaded from [https://doi.org/10.5281/zenodo.14524524](https://doi.org/10.5281/zenodo.14524524)
-
-## Utilities
-`utils` folder contains auxiliary functions to preprocess and plot data, as well as to define and train SHRED-ROM. These functions are mainly based on the [pyshred](https://github.com/Jan-Williams/pyshred) repository developed by [Jan Williams](https://github.com/Jan-Williams). 
 
 ---
 
