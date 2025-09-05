@@ -3,6 +3,7 @@ from torch.utils.data import DataLoader
 from copy import deepcopy
 from IPython.display import clear_output as clc
 from .processdata import mse, mre, num2p
+from torch.optim.lr_scheduler import StepLR
 
 class SHRED(torch.nn.Module):
 
@@ -70,7 +71,7 @@ class SHRED(torch.nn.Module):
         for param in self.parameters():
             param.requires_grad = True
 
-def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, optim = torch.optim.Adam, lr = 1e-3, loss_fun = mse, loss_output = mre, formatter = num2p, verbose = False, patience = 5):
+def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, optim = torch.optim.Adam, lr = 1e-3, loss_fun = mse, loss_output = mre, formatter = num2p, verbose = False, patience = 5, step_size=200):
     '''
     Neural networks training
     
@@ -92,6 +93,8 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
     train_loader = DataLoader(train_dataset, shuffle = True, batch_size = batch_size)
     optimizer = optim(model.parameters(), lr = lr)
 
+    scheduler = StepLR(optimizer, step_size, gamma=0.1)
+
     train_error_list = []
     valid_error_list = []
     patience_counter = 0
@@ -108,16 +111,19 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
                 loss.backward()
                 return loss
             optimizer.step(closure)
+            
 
         model.eval()
+        scheduler.step()
+
         with torch.no_grad():
             train_error = loss_output(train_dataset.Y, model(train_dataset.X))
             valid_error = loss_output(valid_dataset.Y, model(valid_dataset.X))
             train_error_list.append(train_error)
             valid_error_list.append(valid_error)
-
+        
         if verbose == True:
-            print("Epoch "+ str(epoch) + ": Training loss = " + formatter(train_error_list[-1]) + " \t Validation loss = " + formatter(valid_error_list[-1]) + " "*10, end = "\r")
+            print("Epoch "+ str(epoch) + ": Training loss = " + formatter(train_error_list[-1]) + " \t Validation loss = " + formatter(valid_error_list[-1]) + " "*10 + " \t learning rate = " + str(scheduler.get_last_lr()[0]),  end = "\r")
 
         if valid_error == torch.min(torch.tensor(valid_error_list)):
             patience_counter = 0
@@ -131,7 +137,7 @@ def fit(model, train_dataset, valid_dataset, batch_size = 64, epochs = 4000, opt
             valid_error = loss_output(valid_dataset.Y, model(valid_dataset.X))
             
             if verbose == True:
-                print("Training done: Training loss = " + formatter(train_error) + " \t Validation loss = " + formatter(valid_error))
+                print("Training done: Training loss = " + formatter(train_error) + " \t Validation loss = " + formatter(valid_error) + " \t learning rate = " + str(scheduler.get_last_lr()[0]))
          
             return torch.tensor(train_error_list).detach().cpu().numpy(), torch.tensor(valid_error_list).detach().cpu().numpy()
     
