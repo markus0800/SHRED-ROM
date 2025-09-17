@@ -4,6 +4,7 @@ from copy import deepcopy
 from IPython.display import clear_output as clc
 from .processdata import mse, mre, num2p
 from torch.optim.lr_scheduler import StepLR
+import numpy as np
 
 class SHRED(torch.nn.Module):
 
@@ -258,4 +259,86 @@ class lstm_deepONet(torch.nn.Module):
 
         for param in self.parameters():
             param.requires_grad = True
+
+
+
+mse = lambda datatrue, datapred: (datatrue - datapred).pow(2).sum(axis = -1).mean()  # Mean Squared Error
+
+
+
+def fit_deepONet(model, train_dataset, valid_dataset=None, batch_size=64, epochs=50,
+        optim=torch.optim.Adam, lr=1e-3, loss_fun=mre, loss_output=mre,
+         verbose=False, patience=5, step_size = 50, device='cpu', formatter = num2p):
+
+    train_loader = DataLoader(train_dataset, shuffle=True, batch_size=batch_size)
+    optimizer = optim(model.parameters(), lr=lr)
+    scheduler = StepLR(optimizer, step_size=step_size, gamma=0.1)
+    
+    train_error_list = []
+    valid_error_list = []
+    patience_counter = 0
+    best_params = deepcopy(model.state_dict())
+
+    model.to(device)
+
+    for epoch in range(1, epochs + 1):
+
+        model.train()
+        for batch in train_loader:
+            # unpack branch, trunk, and target
+            (trunk_input, branch_input), y = batch  
+            trunk_input = trunk_input.to(device)
+            branch_input = branch_input.to(device)
+            y = y.to(device)
+
+            optimizer.zero_grad()
+            outputs = model(trunk_input, branch_input)
+            # print(np.shape(outputs), np.shape(y))
+            loss = loss_fun(y, outputs)
+            loss.backward()
+            optimizer.step()
+
+        # evaluation
+        model.eval()
+        scheduler.step()
+
+        with torch.no_grad():
+            if valid_dataset is not None:
+                train_error = loss_output(train_dataset.Y.to(device), model(train_dataset.trunk_data, train_dataset.branch_data))
+                valid_error = loss_output(valid_dataset.Y.to(device), model(valid_dataset.trunk_data, valid_dataset.branch_data))
+            else:
+                train_error = loss_output(train_dataset.Y.to(device), model(train_dataset.trunk_data, train_dataset.branch_data))
+                valid_error = train_error
+
+            train_error_list.append(train_error.item())
+            valid_error_list.append(valid_error.item())
+
+        # verbose
+        if verbose:
+            print(f"Epoch {epoch}: Train Loss = {formatter(train_error)}, Valid Loss = {formatter(valid_error)}, learning rate = {scheduler.get_last_lr()[0]}")
+
+        # early stopping
+        if valid_error == min(valid_error_list):
+            patience_counter = 0
+            best_params = deepcopy(model.state_dict())
+        else:
+            patience_counter += 1
+
+        if patience_counter >= patience:
+            model.load_state_dict(best_params)
+            if verbose:
+                print("Early stopping triggered")
+            break
+
+    model.load_state_dict(best_params)
+    return train_error_list, valid_error_list
+
+
+
+
+
+
+
+
+
 
